@@ -3,7 +3,7 @@ import NoteContext from "./noteContext";
 
 
 const NoteState = (props) =>{
-  const host = "http://localhost:5000"
+  const host = "https://i-notebook-teal.vercel.app"
     const notesInitial = [
         {
           "_id": "66aa990c63cff752732c2c66",
