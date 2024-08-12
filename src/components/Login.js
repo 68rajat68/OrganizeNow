@@ -10,7 +10,7 @@ const Login = (props) => {
         e.preventDefault();
 
         // fetch("http:localhost:5000/api/auth/login")
-        const response = await fetch(`http://localhost:5000/api/auth/login`, {
+        const response = await fetch(`https://i-notebook-teal.vercel.app/api/auth/login`, {
             method: "POST",
             headers: {
               "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZhODRlZGNlOTdmZDIxYmJjYTNlNTRmIn0sImlhdCI6MTcyMjMyOTgxMH0.MTFMME6n17uk0BO7yZT36LDdZkhxBTfcIcnh7jCYlwY",
