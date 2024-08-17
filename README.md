@@ -108,7 +108,7 @@ iNotebook is a full-stack note-taking application that allows users to securely 
 ## Screenshots
 Some screenshots of iNotebook.
 
-### Homepage
+### SignUp Page
 ![Homepage Screenshot](images/signUp.png)
 
 ### Adding New Note
