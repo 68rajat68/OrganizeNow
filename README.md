@@ -11,8 +11,6 @@ iNotebook is a full-stack note-taking application that allows users to securely 
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -118,10 +116,3 @@ Some screenshots of iNotebook.
 ![Homepage Screenshot](images/updateNote.png)
 
 
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or feature requests.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
