@@ -106,8 +106,17 @@ iNotebook is a full-stack note-taking application that allows users to securely 
 - **DELETE** `/api/notes/deletenote/:id`: Delete a note.
 
 ## Screenshots
+Some screenshots of iNotebook.
 
-_Add some screenshots of your project here to showcase the UI and functionality._
+### Homepage
+![Homepage Screenshot](images/signUp.png)
+
+### Adding New Note
+![Homepage Screenshot](images/addNote.png)
+
+### Update Note
+![Homepage Screenshot](images/updateNote.png)
+
 
 ## Contributing
 
