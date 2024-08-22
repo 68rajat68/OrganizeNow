@@ -15,7 +15,7 @@ iNotebook is a full-stack note-taking application that allows users to securely 
 ## Features
 
 - **User Authentication:** Secure login and registration functionality.
-- **Note Management:** Users can create, edit, and delete their notes.
+- **Note Management:** Users can create, update, and delete their notes.
 - **User-specific Data:** Each user's notes are accessible only to them; no one else can view or modify them.
 - **Responsive UI:** A modern, user-friendly interface that works across different devices.
 - **API Integration:** Backend API endpoints handle all user and note-related operations.
