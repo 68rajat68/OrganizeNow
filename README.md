@@ -11,11 +11,13 @@ iNotebook is a full-stack note-taking application that allows users to securely 
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
 - **User Authentication:** Secure login and registration functionality.
-- **Note Management:** Users can create, update, and delete their notes.
+- **Note Management:** Users can create, edit, and delete their notes.
 - **User-specific Data:** Each user's notes are accessible only to them; no one else can view or modify them.
 - **Responsive UI:** A modern, user-friendly interface that works across different devices.
 - **API Integration:** Backend API endpoints handle all user and note-related operations.
@@ -104,15 +106,13 @@ iNotebook is a full-stack note-taking application that allows users to securely 
 - **DELETE** `/api/notes/deletenote/:id`: Delete a note.
 
 ## Screenshots
-Some screenshots of iNotebook.
 
-### SignUp Page
-![Homepage Screenshot](images/signUp.png)
+_Add some screenshots of your project here to showcase the UI and functionality._
 
-### Adding New Note
-![Homepage Screenshot](images/addNote.png)
+## Contributing
 
-### Update Note
-![Homepage Screenshot](images/updateNote.png)
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or feature requests.
 
+## License
 
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
