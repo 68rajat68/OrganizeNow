@@ -31,6 +31,8 @@ function App() {
     },1500);
   }
 
+  
+
   return (
     <>
       <NoteState>
@@ -41,6 +43,7 @@ function App() {
           
             <Routes>
               <Route exact path="/" element={<Home showAlert={showAlert} />} />
+              
               <Route exact path="/about" element={<About />} />
               <Route exact path="/login" element={<Login showAlert={showAlert} />} />
               <Route exact path="/signup" element={<SignUp showAlert={showAlert} />} />
