@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import '../css/Schedulr.css';
 import { useNavigate } from 'react-router-dom';
 
-const Schedulr = () => {
-  const [rows, setRows] = useState([{ time_slot: 'Time Slot', work_to_do: 'Work to Do', status: Array(10).fill(false) }]);
+const Schedulr = (props) => {
+  const [rows, setRows] = useState([{ time_slot: 'Time Slot', work_to_do: 'Work to Do', status: Array(31).fill(false) }]);
   const [isEditable, setIsEditable] = useState(false);
-  const [columnHeaders, setColumnHeaders] = useState(['Time Slot', 'Work to Do', ...Array.from({ length: 10 }, (_, i) => (i + 1).toString().padStart(2, '0'))]);
+  const [columnHeaders, setColumnHeaders] = useState(['Time Slot', 'Work to Do', ...Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'))]);
   let history = useNavigate();
 
   useEffect(() => {
@@ -15,13 +15,15 @@ const Schedulr = () => {
   }, []);
 
   const addRow = () => {
-    const newRow = { time_slot: '', work_to_do: '', status: Array(10).fill(false) };
+    const newRow = { time_slot: '', work_to_do: '', status: Array(31).fill(false) };
     setRows([...rows, newRow]);
+    props.showAlert("Added Row Successfully","success")
   };
 
   const removeRow = () => {
     if (rows.length > 1) {
       setRows(rows.slice(0, -1));
+      props.showAlert("Row Removed Successfully","success")
     }
   };
 
@@ -79,11 +81,14 @@ const Schedulr = () => {
       const result = await response.json();
       if (result.success) {
         console.log('Timetable saved successfully');
+        props.showAlert("Saved Successfully","success")
       } else {
         console.error('Failed to save timetable');
+        props.showAlert("Failed to save timetable","danger")
       }
     } catch (error) {
       console.error('Error saving timetable:', error);
+      props.showAlert("Failed to save timetable","danger")
     }
   };
 
@@ -104,18 +109,18 @@ const Schedulr = () => {
       } else {
         // If no data exists, set default values
         setRows([
-          { time_slot: 'Time Slot', work_to_do: 'Work to Do', status: Array(10).fill(false) }
+          { time_slot: 'Time Slot', work_to_do: 'Work to Do', status: Array(31).fill(false) }
         ]);
-        setColumnHeaders(['Time Slot', 'Work to Do', ...Array.from({ length: 10 }, (_, i) => (i + 1).toString().padStart(2, '0'))]);
+        setColumnHeaders(['Time Slot', 'Work to Do', ...Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'))]);
       }
     } catch (error) {
       console.error('Error fetching timetable:', error);
 
       // If an error occurs, set default values
       setRows([
-        { time_slot: 'Time Slot', work_to_do: 'Work to Do', status: Array(10).fill(false) }
+        { time_slot: 'Time Slot', work_to_do: 'Work to Do', status: Array(31).fill(false) }
       ]);
-      setColumnHeaders(['Time Slot', 'Work to Do', ...Array.from({ length: 10 }, (_, i) => (i + 1).toString().padStart(2, '0'))]);
+      setColumnHeaders(['Time Slot', 'Work to Do', ...Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'))]);
     }
   };
 
