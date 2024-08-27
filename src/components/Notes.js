@@ -2,22 +2,22 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from "../context/notes/noteContext"
 import NoteItem from './Noteitem'
 import AddNote from './AddNote';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Notes = (props) => {
   const context = useContext(noteContext);
   let history = useNavigate();
-  const { notes, getNotes , editNote} = context;
-  
+  const { notes, getNotes, editNote } = context;
+
   useEffect(() => {
-    if(localStorage.getItem('token')){
+    if (localStorage.getItem('token')) {
       getNotes();
-    }else{
+    } else {
       history("/login");
     }
   }, [])
 
-  const [note, setNote] = useState({id: "66ab2c68abc8ad217009a11f" , etitle: "", edescription: "", etag: "deafult" })
+  const [note, setNote] = useState({ id: "66ab2c68abc8ad217009a11f", etitle: "", edescription: "", etag: "deafult" })
   const ref = useRef(null)
   const refClose = useRef(null)
 
@@ -25,16 +25,16 @@ const Notes = (props) => {
 
   const updateNote = (currentNote) => {
     ref.current.click();
-    setNote({id:currentNote._id , etitle: currentNote.title , edescription: currentNote.description ,etag: currentNote.tag})
+    setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
     // props.showAlert("Updated Successfully","success")
   }
- 
+
   const handleClick = (e) => {
     // e.preventDefault();
-    editNote(note.id,note.etitle,note.edescription,note.etag)
+    editNote(note.id, note.etitle, note.edescription, note.etag)
     refClose.current.click();
     console.log("HandlClick is Called....");
-    props.showAlert("Updated Successfully","success")
+    props.showAlert("Updated Successfully", "success")
     // addNote(note.title, note.description, note.tag);
   }
 
@@ -59,11 +59,11 @@ const Notes = (props) => {
               <form>
                 <div className="mb-3">
                   <label htmlFor="etitle" className="form-label">Title</label>
-                  <input type="text" className="form-control" id="etitle" name="etitle" value={note.etitle} aria-describedby="emailHelp" onChange={onChange} minLength={5} required/>
+                  <input type="text" className="form-control" id="etitle" name="etitle" value={note.etitle} aria-describedby="emailHelp" onChange={onChange} minLength={5} required />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="edescription" className="form-label">description</label>
-                  <input type="text" className="form-control" id="edescription" name='edescription' value={note.edescription} onChange={onChange} minLength={5} required/>
+                  <input type="text" className="form-control" id="edescription" name='edescription' value={note.edescription} onChange={onChange} minLength={5} required />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="etag" className="form-label">Tag</label>
@@ -73,19 +73,21 @@ const Notes = (props) => {
             </div>
             <div className="modal-footer">
               <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button disabled={note.etitle.length<5 || note.edescription.length<5} onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
+              <button disabled={note.etitle.length < 5 || note.edescription.length < 5} onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
             </div>
           </div>
         </div>
       </div>
-      <div className='row my-3'>
-        <h3>Your Note</h3>
-        <div className="container mx-2" >{notes.length === 0 && 'No Notes To Display'}</div>
-        {
-          notes.map((note) => {
-            return <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />;
-          })
-        }
+      <div className='container'>
+        <div className='row my-3'>
+          <h3>Your Note</h3>
+          <div className="container mx-2" >{notes.length === 0 && 'No Notes To Display'}</div>
+          {
+            notes.map((note) => {
+              return <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />;
+            })
+          }
+        </div>
       </div>
     </>
   )
