@@ -1,10 +1,42 @@
+/* Container for the entire scheduler */
 .schedulr-container {
-  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
   max-width: 100%;
+  overflow: hidden;
+  padding: 10px;
+}
+
+/* Container for the fixed columns and scrollable columns */
+.schedulr-columns {
+  display: flex;
+  flex: 1;
+  
+}
+
+/* Fixed columns styling */
+.schedulr-fixed-columns {
+  flex: 0 0 auto;
+  background-color: #f4f4f4;
+  width: 500px; /* Adjust the width as needed */
+  overflow: hidden; /* Hide overflow content */
+}
+
+/* Scrollable columns styling */
+.schedulr-scrollable-columns {
+  flex: 1;
   overflow-x: auto;
 }
 
-.schedulr-table {
+/* Table styling */
+.schedulr-table-container {
+  min-width: 100%; /* Ensure full width */
+  overflow-x: auto; /* Allow horizontal scrolling */
+}
+
+/* Ensure both tables have the same height */
+.schedulr-table,
+.schedulr-fixed-columns .schedulr-table {
   width: 100%;
   border-collapse: collapse;
 }
@@ -14,11 +46,20 @@
   border: 1px solid #ddd;
   text-align: center;
   padding: 8px;
+  vertical-align: middle; /* Align text vertically in the middle */
+  height: 50px; /* Fixed height */
+  width: 100px; /* Fixed width */
+  max-width: 100px; /* Ensure width doesn't exceed this */
+  max-height: 50px; /* Ensure height doesn't exceed this */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .schedulr-table th {
   background-color: #f4f4f4;
   font-weight: bold;
+  height: 40px; /* Fixed height for header */
 }
 
 .schedulr-table input[type="text"],
@@ -28,27 +69,27 @@
   box-sizing: border-box;
 }
 
-.schedulr-table td:nth-child(1),
-.schedulr-table td:nth-child(2),
-.schedulr-table th:nth-child(1),
-.schedulr-table th:nth-child(2) {
-  width: auto; /* Allow the first two columns to resize based on content */
-  white-space: nowrap; /* Prevent text wrapping */
-}
-
 .status-icon {
   cursor: pointer;
+  font-size: 20px;
 }
 
 .status-icon.disabled {
-  cursor: not-allowed;
+  cursor: default;
 }
 
+/* Ensure both columns have the same row height */
+.schedulr-fixed-columns td,
+.schedulr-scrollable-columns td {
+  height: 50px; /* Fixed height */
+}
+
+/* Button container styling */
 .button-container {
-  margin-top: 20px;
   display: flex;
+  flex-direction: row; /* Stack buttons horizontally */
   justify-content: space-between;
-  align-items: center;
+  margin-top: 10px;
 }
 
 .left-buttons {
@@ -56,9 +97,10 @@
   gap: 10px;
 }
 
-button {
+.button-container button {
   padding: 8px 16px;
   font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -86,75 +128,54 @@ button.save-data-btn {
   border: none;
 }
 
-
-
 @media (max-width: 768px) {
-  .schedulr-table-container {
-    overflow-x: auto; /* Enable horizontal scrolling on mobile */
-    margin-bottom: 20px; /* Add some space between the table and buttons */
+  /* Adjust the fixed columns width for smaller screens */
+  .schedulr-fixed-columns {
+    width: 200px;
+    overflow: hidden; /* Hide overflow content */
   }
 
-  .schedulr-table {
-    min-width: 600px; /* Set a minimum width for the table to ensure horizontal scrolling */
-    font-size: 14px; /* Adjust table font size for better readability */
+  .schedulr-scrollable-columns {
+    flex: 1;
+    overflow-x: auto; /* Allow horizontal scrolling if content overflows */
   }
 
+  /* Fixed height and width for table cells */
   .schedulr-table th,
   .schedulr-table td {
-    padding: 6px;
-    font-size: 14px; /* Smaller font size on mobile */
+    height: 30px;          /* Fixed height */
+    width: 60px;           /* Fixed width */
+    max-width: 60px;       /* Ensure width doesn't exceed this */
+    max-height: 30px;      /* Ensure height doesn't exceed this */
+    padding: 4px;
+    font-size: 12px;
+    overflow: hidden;      /* Hide overflowing content */
+    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+    white-space: nowrap;   /* Prevent text from wrapping */
   }
 
-  .schedulr-container {
-    padding: 10px;
-  }
-
+  /* Adjust button sizes for mobile */
   .button-container {
     flex-direction: column;
-    align-items: flex-start; /* Stack buttons vertically on mobile */
+    align-items: flex-start;
     gap: 10px;
   }
 
   .left-buttons {
+    flex-direction: column;
+    gap: 10px;
     width: 100%;
   }
 
-  .left-buttons button {
-    flex: 1; /* Make buttons equally wide */
-    margin-bottom: 10px;
-  }
-
-  .button-container button.save-data-btn {
+  .button-container button {
     width: 100%;
     margin-bottom: 10px;
-  }
-
-  .button-container .left-buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .left-buttons:first-child {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .left-buttons:nth-child(2) {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-
-  button {
-    width: 48%; /* Adjust width for each button to be half of the container */
-    padding: 10px;
     font-size: 14px;
+    padding: 6px 12px;
   }
 
-  .schedulr-table input[type="text"],
-  .schedulr-table input[type="number"] {
-    padding: 6px;
-    font-size: 14px; /* Adjust input font size */
+  /* Adjust status icon size for mobile */
+  .status-icon {
+    font-size: 18px;
   }
 }

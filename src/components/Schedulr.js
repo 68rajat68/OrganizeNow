@@ -125,64 +125,88 @@ const Schedulr = () => {
 
   return (
     <div className="schedulr-container">
-      <table className="schedulr-table">
-        <thead>
-          <tr>
-            {columnHeaders.map((header, i) => (
-              <th key={i}>
-                {i === 0 || i === 1 ? header : (isEditable ? (
-                  <input
-                    type="number"
-                    min="1"
-                    max="31"
-                    value={header}
-                    onChange={(e) => handleHeaderChange(i, e.target.value)}
-                  />
-                ) : (
-                  header
-                ))}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              <td>
-                {isEditable ? (
-                  <input
-                    type="text"
-                    value={row.time_slot}
-                    onChange={(e) => handleInputChange(rowIndex, 'time_slot', e.target.value)}
-                  />
-                ) : (
-                  row.time_slot
-                )}
-              </td>
-              <td>
-                {isEditable ? (
-                  <input
-                    type="text"
-                    value={row.work_to_do}
-                    onChange={(e) => handleInputChange(rowIndex, 'work_to_do', e.target.value)}
-                  />
-                ) : (
-                  row.work_to_do
-                )}
-              </td>
-              {row.status.map((done, statusIndex) => (
-                <td
-                  key={statusIndex}
-                  onClick={() => toggleStatus(rowIndex, statusIndex)}
-                  className={`status-icon ${isEditable ? 'disabled' : ''}`}
-                >
-                  {done ? '✅' : '⬜'}
-                </td>
+      <div className="schedulr-columns">
+        <div className="schedulr-fixed-columns">
+          <table className="schedulr-table">
+            <thead>
+              <tr>
+                <th>{columnHeaders[0]}</th>
+                <th>{columnHeaders[1]}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  <td>
+                    {isEditable ? (
+                      <input
+                        type="text"
+                        value={row.time_slot}
+                        onChange={(e) => handleInputChange(rowIndex, 'time_slot', e.target.value)}
+                      />
+                    ) : (
+                      row.time_slot
+                    )}
+                  </td>
+                  <td>
+                    {isEditable ? (
+                      <input
+                        type="text"
+                        value={row.work_to_do}
+                        onChange={(e) => handleInputChange(rowIndex, 'work_to_do', e.target.value)}
+                      />
+                    ) : (
+                      row.work_to_do
+                    )}
+                  </td>
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="schedulr-scrollable-columns">
+          <div className="schedulr-table-container">
+            <table className="schedulr-table">
+              <thead>
+                <tr>
+                  {columnHeaders.slice(2).map((header, i) => (
+                    <th key={i + 2}>
+                      {isEditable ? (
+                        <input
+                          type="number"
+                          min="1"
+                          max="31"
+                          value={header}
+                          onChange={(e) => handleHeaderChange(i + 2, e.target.value)}
+                        />
+                      ) : (
+                        header
+                      )}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {row.status.map((done, statusIndex) => (
+                      <td
+                        key={statusIndex}
+                        onClick={() => toggleStatus(rowIndex, statusIndex)}
+                        className={`status-icon ${isEditable ? 'disabled' : ''}`}
+                      >
+                        {done ? '✅' : '⬜'}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       <div className="button-container">
         <div className="left-buttons">
           <button onClick={toggleEdit} className="edit-btn">
@@ -194,6 +218,7 @@ const Schedulr = () => {
         <button onClick={saveTimetable} className="save-data-btn">Save Data</button>
       </div>
     </div>
+
   );
 };
 
