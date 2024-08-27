@@ -55,6 +55,71 @@ const Schedulr = () => {
         setRows(newRows);
       }
     };
+
+    const saveTimetable = async () => {
+      try {
+        const response = await fetch('https://inotebook-backend-ixb2.onrender.com/api/timetable/save', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': localStorage.getItem('token')
+          },
+          body: JSON.stringify({
+            rows,
+            columnHeaders
+          })
+        });
+    
+        const result = await response.json();
+        if (result.success) {
+          console.log('Timetable saved successfully');
+        } else {
+          console.error('Failed to save timetable');
+        }
+      } catch (error) {
+        console.error('Error saving timetable:', error);
+      }
+    };
+
+    
+    const fetchTimetable = async () => {
+      try {
+        const response = await fetch('https://inotebook-backend-ixb2.onrender.com/api/timetable/fetch', {
+          method: 'GET',
+          headers: {
+            'auth-token': localStorage.getItem('token')
+          }
+        });
+    
+        const result = await response.json();
+        if (result.success) {
+          // If data exists, use it
+          setRows(result.timetable.rows);
+          setColumnHeaders(result.timetable.columnHeaders);
+        } else {
+          // If no data exists, set default values
+          setRows([
+            { time_slot: '08:00 AM - 09:00 AM', work_to_do: '', status: Array(10).fill(false) }
+          ]);
+          setColumnHeaders(['Time Slot', 'Work to Do', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10']);
+        }
+      } catch (error) {
+        console.error('Error fetching timetable:', error);
+    
+        // If an error occurs, set default values
+        setRows([
+          { time_slot: '08:00 AM - 09:00 AM', work_to_do: '', status: Array(10).fill(false) }
+        ]);
+        setColumnHeaders(['Time Slot', 'Work to Do', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10']);
+      }
+    };
+    
+    useEffect(() => {
+      fetchTimetable();
+    }, []);
+    
+    
+    
   
     return (
       <div className="schedulr-container">
