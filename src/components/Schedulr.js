@@ -1,7 +1,6 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/Schedulr.css';
-import {useNavigate} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const Schedulr = () => {
   const [rows, setRows] = useState([{ time_slot: 'Time Slot', work_to_do: 'Work to Do', status: Array(10).fill(false) }]);
@@ -10,10 +9,10 @@ const Schedulr = () => {
   let history = useNavigate();
 
   useEffect(() => {
-    if(!localStorage.getItem('token')){
+    if (!localStorage.getItem('token')) {
       history("/login");
     }
-  }, [])
+  }, []);
 
   const addRow = () => {
     const newRow = { time_slot: '', work_to_do: '', status: Array(10).fill(false) };
@@ -154,7 +153,7 @@ const Schedulr = () => {
                   <input
                     type="text"
                     value={row.time_slot}
-                    onChange={(e) => handleInputChange(rowIndex, 'Time Slot', e.target.value)}
+                    onChange={(e) => handleInputChange(rowIndex, 'time_slot', e.target.value)}
                   />
                 ) : (
                   row.time_slot
@@ -165,7 +164,7 @@ const Schedulr = () => {
                   <input
                     type="text"
                     value={row.work_to_do}
-                    onChange={(e) => handleInputChange(rowIndex, 'Work to Do', e.target.value)}
+                    onChange={(e) => handleInputChange(rowIndex, 'work_to_do', e.target.value)}
                   />
                 ) : (
                   row.work_to_do
@@ -184,11 +183,6 @@ const Schedulr = () => {
           ))}
         </tbody>
       </table>
-      {/* <button onClick={toggleEdit} className="edit-btn">
-        {isEditable ? 'Save' : 'Edit'}
-      </button>
-      <button onClick={addRow} className="add-row-btn">Add Row</button>
-      <button onClick={removeRow} className="remove-row-btn">Remove Row</button> */}
       <div className="button-container">
         <div className="left-buttons">
           <button onClick={toggleEdit} className="edit-btn">

@@ -1,83 +1,160 @@
 .schedulr-container {
-    width: 100%;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.schedulr-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.schedulr-table th,
+.schedulr-table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 8px;
+}
+
+.schedulr-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.schedulr-table input[type="text"],
+.schedulr-table input[type="number"] {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.schedulr-table td:nth-child(1),
+.schedulr-table td:nth-child(2),
+.schedulr-table th:nth-child(1),
+.schedulr-table th:nth-child(2) {
+  width: auto; /* Allow the first two columns to resize based on content */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.status-icon {
+  cursor: pointer;
+}
+
+.status-icon.disabled {
+  cursor: not-allowed;
+}
+
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}
+
+button.add-row-btn {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+}
+
+button.remove-row-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+button.save-data-btn {
+  background-color: #FF9800;
+  color: white;
+  border: none;
+}
+
+
+
+@media (max-width: 768px) {
+  .schedulr-table-container {
+    overflow-x: auto; /* Enable horizontal scrolling on mobile */
+    margin-bottom: 20px; /* Add some space between the table and buttons */
   }
-  
+
   .schedulr-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    min-width: 600px; /* Set a minimum width for the table to ensure horizontal scrolling */
+    font-size: 14px; /* Adjust table font size for better readability */
   }
-  
-  .schedulr-table th, .schedulr-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
+
+  .schedulr-table th,
+  .schedulr-table td {
+    padding: 6px;
+    font-size: 14px; /* Smaller font size on mobile */
   }
-  
-  .schedulr-table th {
-    background-color: #f2f2f2;
+
+  .schedulr-container {
+    padding: 10px;
   }
-  
-  .status-icon {
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
-  .add-row-btn, .remove-row-btn, .edit-btn {
-    padding: 10px 15px;
-    margin-right: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .remove-row-btn {
-    background-color: #f44336;
-  }
-  
-  .add-row-btn:hover, .remove-row-btn:hover, .edit-btn:hover {
-    background-color: #45a049;
-  }
-  
-  input[type="text"] {
-    width: 100%;
-    padding: 5px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
+
   .button-container {
+    flex-direction: column;
+    align-items: flex-start; /* Stack buttons vertically on mobile */
+    gap: 10px;
+  }
+
+  .left-buttons {
+    width: 100%;
+  }
+
+  .left-buttons button {
+    flex: 1; /* Make buttons equally wide */
+    margin-bottom: 10px;
+  }
+
+  .button-container button.save-data-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .button-container .left-buttons {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    width: 100%;
+  }
+
+  .left-buttons:first-child {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .left-buttons:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
     margin-top: 10px;
   }
-  
-  .left-buttons {
-    display: flex;
-    gap: 20px; /* 20px margin between buttons */
+
+  button {
+    width: 48%; /* Adjust width for each button to be half of the container */
+    padding: 10px;
+    font-size: 14px;
   }
-  
-  .edit-btn, .add-row-btn, .remove-row-btn {
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
+
+  .schedulr-table input[type="text"],
+  .schedulr-table input[type="number"] {
+    padding: 6px;
+    font-size: 14px; /* Adjust input font size */
   }
-  
-  .save-data-btn {
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-  }
-  
-  .save-data-btn:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-  
+}
