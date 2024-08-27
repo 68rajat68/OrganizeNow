@@ -51,3 +51,33 @@
     border-radius: 4px;
   }
   
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .left-buttons {
+    display: flex;
+    gap: 20px; /* 20px margin between buttons */
+  }
+  
+  .edit-btn, .add-row-btn, .remove-row-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .save-data-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+  }
+  
+  .save-data-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  

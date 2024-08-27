@@ -8,6 +8,7 @@ const Notes = (props) => {
   const context = useContext(noteContext);
   let history = useNavigate();
   const { notes, getNotes , editNote} = context;
+  
   useEffect(() => {
     if(localStorage.getItem('token')){
       getNotes();
