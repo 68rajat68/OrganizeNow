@@ -16,6 +16,7 @@ import Alert from './components/Alert';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import { useState } from 'react';
+import Schedulr from './components/Schedulr';
 
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
           
             <Routes>
               <Route exact path="/" element={<Home showAlert={showAlert} />} />
-              
+              <Route exact path="/Schedulr" element={ <Schedulr/>} />
               <Route exact path="/about" element={<About />} />
               <Route exact path="/login" element={<Login showAlert={showAlert} />} />
               <Route exact path="/signup" element={<SignUp showAlert={showAlert} />} />

@@ -1,0 +1,53 @@
+.schedulr-container {
+    width: 100%;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .schedulr-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .schedulr-table th, .schedulr-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .schedulr-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .status-icon {
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .add-row-btn, .remove-row-btn, .edit-btn {
+    padding: 10px 15px;
+    margin-right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .remove-row-btn {
+    background-color: #f44336;
+  }
+  
+  .add-row-btn:hover, .remove-row-btn:hover, .edit-btn:hover {
+    background-color: #45a049;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
