@@ -256,9 +256,54 @@ function NavBar() {
 
     return (
         <div>
-            <nav className="navbar fixed-top navbar-expand-lg bg-dark bg-body-tertiary">
+            <nav className="navbar fixed-top navbar-expand-lg">
                 <div className="container-fluid">
-                    <NavLink className="navbar-brand" to="/">iNotebook</NavLink>
+                    
+                    {/* <FontAwesomeIcon icon="fa-solid fa-book" style={{color: "#ebedff",}} /> */}
+                    <NavLink className="navbar-brand" to="/"><i className="fa-solid fa-book mx-1" style={{color: "#ebedff",}} ></i><span style={{color:'white'}}>iNotebook</span></NavLink>
+                    <div className="profile_mobile">
+                        { localStorage.getItem('token') && (
+                            <>
+                                <i
+                                    
+                                    className="fa-regular fa-circle-user mx-1"
+                                    style={{ fontSize: '24px', cursor: 'pointer', color: 'white' }}
+                                    onClick={userProfileFun}
+                                ></i>
+                                {showModal && (
+                                        <div
+                                            className="modal-content"
+                                            style={{
+                                                position: 'absolute',
+                                                zIndex: 1000,
+                                                marginTop: 30,
+                                                marginLeft:5,
+                                                width: '150px',
+                                                padding: '5px',
+                                                borderRadius: '5px',
+                                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                                                backgroundColor: 'white',
+                                                display: 'flex'
+                                            }}
+                                        >
+                                            <div className="modal-header">
+                                                <div>
+                                                    <i className="fa-regular fa-circle-user mx-2" style={{ fontSize: '24px' }}></i><span>{userName}</span>
+                                                </div>
+                                                <button type="button" className="close" onClick={userProfileFun}>
+                                                    &times;
+                                                </button>
+                                            </div>
+                                            <div className="modal-body">
+                                                <button onClick={handleLogout} className="btn btn-primary btn-block my-2">Logout</button>
+                                            </div>
+                                        </div>
+                                    )}
+                            </>
+                        )
+                    }
+                        </div>
+                    
                     <button className="navbar-toggler" type="button" onClick={() => setMenuOpen(!menuOpen)}>
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -269,8 +314,8 @@ function NavBar() {
                         <NavLink className="nav-link" to="/about">About</NavLink>
                         {!localStorage.getItem('token') && (
                             <>
-                                <NavLink className="btn btn-primary" to="/login">Login</NavLink>
-                                <NavLink className="btn btn-primary" to="/signup">SignUp</NavLink>
+                                <NavLink className="btn btn-primary mx-2 my-2" to="/login">Login</NavLink>
+                                <NavLink className="btn btn-primary mx-2 my-2" to="/signup">SignUp</NavLink>
                             </>
                         )}
                     </div>
@@ -296,8 +341,8 @@ function NavBar() {
                                 <>
                                     <i
                                         ref={iconRef}
-                                        className="fa-regular fa-circle-user mx-2"
-                                        style={{ fontSize: '24px', cursor: 'pointer' }}
+                                        className="fa-regular fa-circle-user mx-1"
+                                        style={{ fontSize: '24px', cursor: 'pointer', color: 'white' }}
                                         onClick={userProfileFun}
                                     ></i>
                                     {showModal && (
