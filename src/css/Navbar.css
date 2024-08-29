@@ -99,7 +99,7 @@
 }
 
 /* Profile Modal Styles */
-.modal-content {
+.modal-content_01 {
     position: absolute;
     background-color: white;
     border-radius: 5px;
@@ -108,17 +108,18 @@
     width: 200px;
 }
 
-.modal-header {
+.modal-header_01 {
     display: flex;
+    flex: 1;
     justify-content: space-between;
     align-items: center;
 }
 
-.modal-body {
+.modal-body_01 {
     padding: 10px 0;
 }
 
-.modal-content .close {
+.modal-content_01 .close {
     border: none;
     background: none;
     font-size: 20px;
