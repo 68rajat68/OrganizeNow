@@ -228,6 +228,7 @@ function NavBar() {
         // if (!showModal) ref.current.click();
         setShowModal(!showModal);
         console.log(showModal);
+        handleLogout();
     };
 
     const positionModal = () => {
@@ -263,7 +264,6 @@ function NavBar() {
         <div>
             <nav className="navbar fixed-top navbar-expand-lg">
                 <div className="container-fluid">
-
                     {/* <FontAwesomeIcon icon="fa-solid fa-book" style={{color: "#ebedff",}} /> */}
                     <NavLink className="navbar-brand" to="/"><i className="fa-solid fa-book mx-1" style={{ color: "#ebedff", }} ></i><span style={{ color: 'white' }}>iNotebook</span></NavLink>
                     <div className="profile_mobile">
@@ -320,7 +320,6 @@ function NavBar() {
                                         style={{ fontSize: '24px', cursor: 'pointer', color: 'white' }}
                                         onClick={userProfileFun}
                                     ></i>
-
                                 </>
                         }
                     </div>
