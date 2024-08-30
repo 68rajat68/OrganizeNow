@@ -1,177 +1,3 @@
-// import React, { useEffect, useRef, useState } from 'react'
-// import { NavLink, useNavigate } from "react-router-dom";
-
-// function NavBar() {
-//     let history = useNavigate()
-//     const [showModal, setShowModal] = useState(false);
-//     const [userName, setUserName] = useState('');
-//     const [token, setToken] = useState(localStorage.getItem('token') || '');
-//     const iconRef = useRef(null);
-//     const modalRef = useRef(null);
-
-
-//     useEffect(() => {
-//         const fetchUserData = async () => {
-//             const authToken = localStorage.getItem('token');
-//             if (authToken) {
-//                 try {
-//                     const response = await fetch('https://inotebook-backend-ixb2.onrender.com/api/auth/getuser', {
-//                         method: 'POST',
-//                         headers: {
-//                             'Content-Type': 'application/json',
-//                             'auth-token': authToken
-//                         }
-//                     });
-
-//                     const data = await response.json();
-//                     if (response.ok) {
-//                         setUserName(data.name); // Store user's name in state
-//                     } else {
-//                         console.error('Failed to fetch user data:', data.error);
-//                     }
-//                 } catch (error) {
-//                     console.error('Error fetching user data:', error);
-//                 }
-//             }
-//         };
-
-//         fetchUserData();
-//     }, [token]);
-
-//     const handleLogout = () => {
-//         localStorage.removeItem('token');
-//         setToken('');
-//         setUserName('');
-//         if (showModal === true) setShowModal(false);
-//         history('/login');
-//     }
-
-//     const userProfileFun = () => {
-//         setShowModal(!showModal);
-//     };
-
-//     // const positionModal = () => {
-//     //     if (iconRef.current && modalRef.current) {
-//     //         const iconRect = iconRef.current.getBoundingClientRect();
-//     //         modalRef.current.style.top = `${iconRect.bottom + window.scrollY}px`;
-//     //         modalRef.current.style.right = `${iconRect.right - window.scrollX }px`;
-//     //     }
-//     // };
-//     const positionModal = () => {
-//         if (iconRef.current && modalRef.current) {
-//             const iconRect = iconRef.current.getBoundingClientRect();
-//             const modalWidth = modalRef.current.offsetWidth;
-
-//             let leftPosition = iconRect.left + window.scrollX;
-
-//             // Adjust position if modal goes out of screen
-//             if (leftPosition + modalWidth > window.innerWidth) {
-//                 leftPosition = window.innerWidth - modalWidth - 20; // Add a little padding from the edge
-//             }
-
-//             modalRef.current.style.top = `${iconRect.bottom + window.scrollY + 10}px`;
-//             modalRef.current.style.left = `${leftPosition}px`;
-//         }
-//     };
-
-//     useEffect(() => {
-//         if (showModal) {
-//             positionModal();
-//         }
-//     }, [showModal]);
-
-
-//     useEffect(() => {
-//         const storedToken = localStorage.getItem('token');
-//         if (storedToken !== token) {
-//             setToken(storedToken); // Update the token state
-//         }
-//     }, []);
-
-
-
-//     return (
-//         <div>
-//             <nav className="navbar fixed-top navbar-expand-lg bg-dark bg-body-tertiary">
-//                 <div className="container-fluid">
-//                     <NavLink className="navbar-brand" to="/">iNotebook</NavLink>
-//                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-//                         <span className="navbar-toggler-icon"></span>
-//                     </button>
-//                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-//                         <ul className="navbar-nav nav-underline me-auto mb-2 mb-lg-0">
-//                             <li className="nav-item">
-//                                 <NavLink className="nav-link" aria-current="page" to="/">Home</NavLink>
-//                             </li>
-//                             <li className="nav-item">
-//                                 <NavLink className="nav-link" aria-current="page" to="/Schedulr">Schedulr</NavLink>
-//                             </li>
-//                             <li className="nav-item">
-//                                 <NavLink className="nav-link" aria-current="page" to="/about">About</NavLink>
-//                             </li>
-//                         </ul>
-//                         {
-//                             !localStorage.getItem('token') ?
-
-//                                 <form className='d-flex'>
-//                                     <NavLink className="btn btn-primary mx-1" to="/login" role="button">Login</NavLink>
-//                                     <NavLink className="btn btn-primary mx-1" to="/signup" role="button">SignUp</NavLink>
-//                                 </form>
-//                                 :
-//                                 <>
-//                                     <i
-//                                         ref={iconRef}
-//                                         className="fa-regular fa-circle-user mx-2"
-//                                         style={{ fontSize: '24px', cursor: 'pointer' }}
-//                                         onClick={userProfileFun}
-//                                     ></i>
-//                                     {showModal && (
-//                                         <div
-//                                             ref={modalRef}
-//                                             className="modal-content"
-//                                             style={{
-//                                                 position: 'absolute',
-//                                                 zIndex: 1000,
-//                                                 width: '200px',
-//                                                 padding: '5px',
-//                                                 borderRadius: '5px',
-//                                                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-//                                                 backgroundColor: 'white',
-//                                                 display: 'flex'
-//                                             }}
-//                                         >
-//                                             <div className="modal-header">
-//                                                 <div>
-//                                                     <i className="fa-regular fa-circle-user mx-2" style={{ fontSize: '24px' }}></i><span>{userName}</span>
-//                                                 </div>
-//                                                 <button type="button" className="close" onClick={userProfileFun} style={{alignItems:'end', marginLeft:'30%' , justifyContent:'end'}}>
-//                                                     <div>&times;</div>
-//                                                 </button>
-//                                             </div>
-//                                             <div className="modal-body">
-//                                                 {/* <div>
-//                                                     <i className="fa-regular fa-circle-user mx-2" style={{ fontSize: '24px' }}></i>
-//                                                 </div> */}
-
-//                                                 <button onClick={handleLogout} className="btn btn-primary btn-block my-2">Logout</button>
-//                                             </div>
-//                                         </div>
-//                                     )}
-//                                 </>
-//                         }
-
-//                     </div>
-//                 </div>
-//             </nav>
-//         </div>
-//     )
-// }
-
-// export default NavBar
-
-
-
-
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import '../css/Navbar.css';
@@ -181,40 +7,99 @@ function NavBar() {
     const [showModal, setShowModal] = useState(false);
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    const [menuOpen, setMenuOpen] = useState('');
+    const [getUser, setGetUser] = useState(false);
     const [token, setToken] = useState(localStorage.getItem('token') || '');
-    const [menuOpen, setMenuOpen] = useState(false);
     const iconRef = useRef(null);
-    const ref = useRef(null)
     const modalRef = useRef(null);
+    const menuRef = useRef(null);
+
+
+    const fetchUserData = async () => {
+        const authToken = localStorage.getItem('token');
+        if (authToken) {
+            try {
+                const response = await fetch('https://inotebook-backend-ixb2.onrender.com/api/auth/getuser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'auth-token': authToken
+                    }
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    setUserName(data.name);
+                    setUserEmail(data.email);
+                    if (userName !== '') setGetUser(true);
+                } else {
+                    console.error('Failed to fetch user data:', data.error);
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+
+        }
+    };
+
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            const authToken = localStorage.getItem('token');
-            if (authToken) {
-                try {
-                    const response = await fetch('https://inotebook-backend-ixb2.onrender.com/api/auth/getuser', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'auth-token': authToken
-                        }
-                    });
+        if (showModal) {
+            positionModal();
+            document.addEventListener('click', handleClickOutside, true);
+        } else {
+            document.removeEventListener('click', handleClickOutside, true);
+        }
+    }, [showModal]);
 
-                    const data = await response.json();
-                    if (response.ok) {
-                        setUserName(data.name); // Store user's name in state
-                        setUserEmail(data.email);
-                    } else {
-                        console.error('Failed to fetch user data:', data.error);
-                    }
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                }
-            }
-        };
+    // useEffect(() => {
+    //     if (menuOpen) {
+    //         document.addEventListener('click', handleClickOutsideMenu, true);
+    //     } else {
+    //         document.removeEventListener('click', handleClickOutsideMenu, true);
+    //     }
+    // }, [menuOpen]);
 
-        fetchUserData();
-    }, [token]);
+
+    useEffect(() => {
+        if (showModal || menuOpen) {
+            document.addEventListener('click', handleClickOutside, true);
+        } else {
+            document.removeEventListener('click', handleClickOutside, true);
+        }
+    }, [showModal, menuOpen]);
+
+    const handleClickOutside = (event) => {
+        if (
+            modalRef.current &&
+            !modalRef.current.contains(event.target) &&
+            !iconRef.current.contains(event.target)
+        ) {
+            setShowModal(false);
+        }
+
+        if (
+            menuOpen &&
+            !event.target.closest('.navbar-toggler') &&
+            !event.target.closest('.mobile-menu')
+        ) {
+            setMenuOpen(false);
+        }
+    };
+
+
+    // const handleClickOutside = (event) => {
+    //     if (modalRef.current && !modalRef.current.contains(event.target) && !iconRef.current.contains(event.target)) {
+    //             setShowModal(false);
+    //         // setArrowDirection('down');
+    //     }
+    // };
+
+    const handleClickOutsideMenu = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+            setMenuOpen(false);
+        }
+    };
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -222,36 +107,47 @@ function NavBar() {
         setUserName('');
         if (showModal === true) setShowModal(false);
         history('/login');
+        setGetUser(false);
     };
 
+    // const userProfileFun = () => {
+    //     if (!getUser) fetchUserData();
+    //     setShowModal(!showModal);
+    // };
+
     const userProfileFun = () => {
-        // if (!showModal) ref.current.click();
+        if (!getUser) fetchUserData();
         setShowModal(!showModal);
-        console.log(showModal);
-        handleLogout();
     };
+
 
     const positionModal = () => {
         if (iconRef.current && modalRef.current) {
             const iconRect = iconRef.current.getBoundingClientRect();
             const modalWidth = modalRef.current.offsetWidth;
 
-            let leftPosition = iconRect.left + window.scrollX;
+            let leftPosition = iconRect.left + (iconRect.width / 2) - (modalWidth / 2);
 
-            if (leftPosition + modalWidth > window.innerWidth) {
-                leftPosition = window.innerWidth - modalWidth - 20;
+            // Ensure the modal stays within the viewport
+            if (window.innerWidth < 768) {
+                // For mobile view, center the modal and make it near-full width
+                modalRef.current.style.width = '60%';
+                leftPosition = (window.innerWidth - modalRef.current.offsetWidth);
+                modalRef.current.style.top = `${iconRect.bottom + 60}px`;
+            } else {
+                if (leftPosition < 10) {
+                    leftPosition = 10;
+                } else if (leftPosition + modalWidth > window.innerWidth - 10) {
+                    leftPosition = window.innerWidth - modalWidth - 10;
+                }
+                modalRef.current.style.top = `${iconRect.bottom + 20}px`;
             }
 
-            modalRef.current.style.top = `${iconRect.bottom + window.scrollY + 10}px`;
-            modalRef.current.style.left = `${leftPosition}px`;
+            modalRef.current.style.position = 'fixed';
+
+            modalRef.current.style.left = `${leftPosition - 10}px`;
         }
     };
-
-    useEffect(() => {
-        if (showModal) {
-            positionModal();
-        }
-    }, [showModal]);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -264,17 +160,25 @@ function NavBar() {
         <div>
             <nav className="navbar fixed-top navbar-expand-lg">
                 <div className="container-fluid">
-                    {/* <FontAwesomeIcon icon="fa-solid fa-book" style={{color: "#ebedff",}} /> */}
                     <NavLink className="navbar-brand" to="/"><i className="fa-solid fa-book mx-1" style={{ color: "#ebedff", }} ></i><span style={{ color: 'white' }}>iNotebook</span></NavLink>
                     <div className="profile_mobile">
                         {localStorage.getItem('token') && (
                             <>
                                 <i
-
-                                    className="fa-regular fa-circle-user mx-1"
-                                    style={{ fontSize: '24px', cursor: 'pointer', color: 'white' }}
+                                    ref={iconRef}
+                                    className="icon-container"
                                     onClick={userProfileFun}
-                                ></i>
+                                >
+                                    <i
+                                        className={`fa-regular fa-circle-user mx-1 ${showModal ? 'icon-open' : 'icon-closed'}`}
+                                        style={{ fontSize: '24px', color: 'white' }}
+                                    ></i>
+                                    <i
+                                        className={`fa ${showModal ? 'fa-chevron-up' : 'fa-chevron-down'} `}
+                                        style={{ fontSize: '12px', color: 'white', marginLeft: '3px' }}
+                                    ></i>
+                                </i>
+
                             </>
                         )}
                     </div>
@@ -282,11 +186,15 @@ function NavBar() {
                     <button className="navbar-toggler" type="button" onClick={() => setMenuOpen(!menuOpen)}>
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+                    <div ref={menuRef} className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
                         <span className="close-btn" onClick={() => setMenuOpen(false)}>&times;</span>
-                        <NavLink className="nav-link" to="/">Home</NavLink>
+                        {/* <NavLink className="nav-link" to="/">Home</NavLink>
                         <NavLink className="nav-link" to="/Schedulr">Schedulr</NavLink>
-                        <NavLink className="nav-link" to="/about">About</NavLink>
+                        <NavLink className="nav-link" to="/about">About</NavLink> */}
+
+                        <NavLink className="nav-link" to="/" onClick={() => setMenuOpen(false)}>Home</NavLink>
+                        <NavLink className="nav-link" to="/Schedulr" onClick={() => setMenuOpen(false)}>Schedulr</NavLink>
+                        <NavLink className="nav-link" to="/about" onClick={() => setMenuOpen(false)}>About</NavLink>
                         {!localStorage.getItem('token') && (
                             <>
                                 <NavLink className="btn btn-primary mx-2 my-2" to="/login">Login</NavLink>
@@ -316,13 +224,32 @@ function NavBar() {
                                 <>
                                     <i
                                         ref={iconRef}
-                                        className="fa-regular fa-circle-user mx-1"
-                                        style={{ fontSize: '24px', cursor: 'pointer', color: 'white' }}
+                                        style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
                                         onClick={userProfileFun}
-                                    ></i>
+                                    >
+                                        <i
+                                            className={`fa-regular fa-circle-user mx-1 ${showModal ? 'icon-open' : 'icon-closed'}`}
+                                            style={{ fontSize: '24px', cursor: 'pointer', color: 'white' }}
+                                        ></i>
+                                        <i
+                                            className={`fa ${showModal ? 'fa-chevron-up' : 'fa-chevron-down'} `}
+                                            style={{ fontSize: '12px', color: 'white', marginLeft: '3px' }}
+                                        ></i></i>
                                 </>
                         }
                     </div>
+                    {showModal && (
+                        <div className="profile-modal" ref={modalRef}>
+                            <div className="profile-details">
+                                <h4><i className='fa-solid fa-user' /> User Profile</h4>
+                                <hr />
+                                <p><strong>Name:</strong> {userName}</p>
+                                <p><strong>Email:</strong> {userEmail}</p>
+                                <hr />
+                                <button onClick={handleLogout} className="btn btn-danger">Logout</button>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </nav>
         </div>
