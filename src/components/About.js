@@ -6,11 +6,11 @@ const About = () => {
   const [activeTab, setActiveTab] = useState('inotebook');
 
   return (
-    <div className="about-page">
+    <div className="about-page p-3" style={{ backgroundColor: 'white', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border: '1px solid #ccc' }}>
       <Container>
         <Row>
           <Col>
-            <h1>About Us</h1>
+            <h2><i className="fa-solid fa-info-circle mx-2" style={{ color: "black" }}></i>About</h2>
             <Tabs
               activeKey={activeTab}
               onSelect={(k) => setActiveTab(k)}
@@ -19,7 +19,7 @@ const About = () => {
             >
               <Tab eventKey="inotebook" title="iNotebook">
                 <div className="tab-content">
-                  <h2>iNotebook</h2>
+                  <h5><i className="fa-solid fa-clipboard-list mx-1" style={{ color: "#1020ff" }}></i>iNotebook</h5>
                   <p>
                     iNotebook is a versatile note-taking application designed to help you keep track of your notes efficiently. With iNotebook, you can:
                   </p>
@@ -35,7 +35,7 @@ const About = () => {
               </Tab>
               <Tab eventKey="schedulr" title="Schedulr">
                 <div className="tab-content">
-                  <h2>Schedulr</h2>
+                  <h5><i className="fa-solid fa-calendar-alt mx-2" style={{ color: "green" }}></i>Schedulr</h5>
                   <p>
                     Schedulr is a powerful scheduling tool designed to help you manage your daily tasks and time slots effectively. With Schedulr, you can:
                   </p>

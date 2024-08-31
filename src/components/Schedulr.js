@@ -129,8 +129,17 @@ const Schedulr = (props) => {
   }, []);
 
   return (
-    <div className="schedulr-container">
-      <div className="schedulr-columns">
+    <div className="schedulr-container p-3" style={{ backgroundColor: 'white', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border: '1px solid #ccc' }}>
+      <h2>
+      {/* <i className="fa-solid fa-clock mx-1" style={{ color: "#1020ff" }}></i>
+      <i className="fa-solid fa-tasks mx-1" style={{ color: "#1020ff" }}></i>
+      <i className="fa-regular fa-check-square mx-1" style={{ color: "#1020ff" }}></i>
+      <i className="fa-regular fa-list-alt mx-1" style={{ color: "#1020ff" }}></i>
+      <i className="fa-solid fa-hourglass-half mx-1" style={{ color: "#1020ff" }}></i>
+      <i className="fa-solid fa-bell mx-1" style={{ color: "#1020ff" }}></i> */}
+      
+      <center><i className="fa-solid fa-calendar-alt mx-2" style={{ color: "green" }}></i>Schedulr</center></h2>
+      <div className="schedulr-columns py-2">
         <div className="schedulr-fixed-columns">
           <table className="schedulr-table">
             <thead>
@@ -212,7 +221,7 @@ const Schedulr = (props) => {
         </div>
       </div>
 
-      <div className="button-container">
+      <div className="button-container ">
         <div className="left-buttons">
           <button onClick={toggleEdit} className="edit-btn">
             {isEditable ? 'Save' : 'Edit'}

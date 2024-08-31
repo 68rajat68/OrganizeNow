@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-left">
-          <p>&copy; 2024 iNotebook Schedulr. All rights reserved.</p>
+          <p>&copy; 2024 OrganizeNow. All rights reserved.</p>
           <p>
             <a href="/" className="footer-link">Terms of Service</a> | 
             <a href="/" className="footer-link"> Privacy Policy</a>
@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-right">
-          <h4>Contact Us:</h4>
+          <h4>Contact Me:</h4>
           <p>
             <FaEnvelope className="footer-icon" /> <span>Email:</span> <a href="mailto:68rajat68@gmail.com" className="footer-link">68rajat68@gmail.com</a>
           </p>

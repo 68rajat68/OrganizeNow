@@ -160,7 +160,9 @@ function NavBar() {
         <div>
             <nav className="navbar fixed-top navbar-expand-lg">
                 <div className="container-fluid">
-                    <NavLink className="navbar-brand" to="/"><i className="fa-solid fa-book mx-1" style={{ color: "#ebedff", }} ></i><span style={{ color: 'white' }}>iNotebook</span></NavLink>
+                    <NavLink className="navbar-brand" to="/"><span style={{ color: 'white', fontWeight:'600' }}>
+                    <i className="fa-solid fa-boxes" style={{marginRight:'5px', color: "#E0FFFF" }}></i>
+                    OrganizeNow</span></NavLink>
                     <div className="profile_mobile">
                         {localStorage.getItem('token') && (
                             <>
@@ -192,7 +194,7 @@ function NavBar() {
                         <NavLink className="nav-link" to="/Schedulr">Schedulr</NavLink>
                         <NavLink className="nav-link" to="/about">About</NavLink> */}
 
-                        <NavLink className="nav-link" to="/" onClick={() => setMenuOpen(false)}>Home</NavLink>
+                        <NavLink className="nav-link" to="/" onClick={() => setMenuOpen(false)}>iNotebook</NavLink>
                         <NavLink className="nav-link" to="/Schedulr" onClick={() => setMenuOpen(false)}>Schedulr</NavLink>
                         <NavLink className="nav-link" to="/about" onClick={() => setMenuOpen(false)}>About</NavLink>
                         {!localStorage.getItem('token') && (
@@ -205,7 +207,7 @@ function NavBar() {
                     <div className={`collapse navbar-collapse ${menuOpen ? 'd-none' : ''}`} id="navbarSupportedContent">
                         <ul className="navbar-nav nav-underline me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <NavLink className="nav-link" aria-current="page" to="/">Home</NavLink>
+                                <NavLink className="nav-link" aria-current="page" to="/">iNotebook</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" aria-current="page" to="/Schedulr">Schedulr</NavLink>

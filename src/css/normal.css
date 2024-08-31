@@ -1,0 +1,79 @@
+/* for ADDNote.js */
+
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust as needed */
+  }
+  
+  .form-label {
+    flex: 0 0 100px; /* Adjust the width of the label */
+    margin-right: 10px; /* Spacing between label and input */
+  }
+  
+  .form-control {
+    flex: 1; /* Input field takes up the remaining space */
+  }
+  
+
+
+  /* For NoteItem Only  */
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .d-flex {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Space between title and buttons */
+  }
+  
+  .d-flex .card-title {
+    margin: 0; /* Ensure no additional margin */
+  }
+  
+  .d-flex .d-flex {
+    /* No additional styling needed if this is just to align buttons */
+  }
+  
+  .card-body .card-text {
+    margin-top: 10px; /* Adjust as needed */
+  }
+
+  .card {
+    position: relative; /* Ensure the card is positioned relatively for the badge to be positioned absolutely */
+  }
+  
+  .badge {
+    position: absolute;
+    left: -15px; /* Slightly inside from the end of the card */
+    transform: translate(50%, -50%); /* Center the badge vertically in the corner */
+    z-index: 1; /* Ensure the badge is on top */
+    background-color: rgba(41, 28, 3, 0.911);
+  }
+  
+
+
+
+
+
+  /* For Login */
+
+  .password-container {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff; /* Adjust color as needed */
+    font-size: 18px;
+}
