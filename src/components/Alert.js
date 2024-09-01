@@ -1,4 +1,6 @@
 import React from 'react'
+import LoadingSpinner from './LoadingSpinner';
+
 
 export default function Alert(probs) {
 
@@ -9,8 +11,8 @@ export default function Alert(probs) {
     }
 
   return (
-    <div style={{height:'45px' , marginTop:"60px"}}>
-        {probs.alert && <div style={{height:"40px", paddingTop:"6px"}} className={`alert alert-${probs.alert.type} alert-dismissible fade show`} role="alert">
+    <div style={{height:'50px' , marginTop:"65px"}}>
+      {probs.loading===true ? <LoadingSpinner msg={probs.msg}/> : probs.alert && <div style={{height:"50px", paddingTop:"10px"}} className={`alert alert-${probs.alert.type} alert-dismissible fade show`} role="alert">
             <strong>{capitalize(probs.alert.type)}</strong>: {probs.alert.msg}
             {/* <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> */}
         </div>}

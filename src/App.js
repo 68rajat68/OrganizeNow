@@ -15,13 +15,17 @@ import NoteState from './context/notes/noteState';
 import Alert from './components/Alert';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import Schedulr from './components/Schedulr';
 import Footer from './components/Footer';
 
 
+
+
 function App() {
+  const host = "https://inotebook-backend-ixb2.onrender.com"
   const [alert, setAlert] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const showAlert = (message, type) => {
     setAlert({
@@ -30,10 +34,26 @@ function App() {
     })
     setTimeout(() => {
       setAlert(null);
-    }, 1500);
+    }, 2000);
   }
+  useEffect(() => {
+  const getNotes = async () => {
+    setLoading(true);
 
-
+    try {
+      const response = await fetch(`${host}/`, {
+        method: "GET"
+      });
+      const json = await response;
+      console.log(json);
+    } catch (error) {
+      console.error("Error fetching notes:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+  getNotes();
+},[]);
 
   return (
     <>
@@ -41,7 +61,7 @@ function App() {
         <Router>
           <div className='app-container'>
             <NavBar />
-            <Alert alert={alert} />
+            <Alert alert={alert} loading={loading} msg={'Waiting for backend to start...'}/>
             <div className='content_main'>
               <Routes>
                 <Route exact path="/" element={<Home showAlert={showAlert} />} />
