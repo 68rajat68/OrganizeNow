@@ -116,10 +116,8 @@ OrganizeNow is a comprehensive application designed to help you manage your task
 - **DELETE** `/api/notes/deletenote/:id`: Delete a note.
 
 ### Schedule Management (Schedulr)
-- **GET** `/api/schedule/fetchschedule`: Fetch the user's current schedule.
-- **POST** `/api/schedule/updateschedule`: Update the user's schedule.
-- **POST** `/api/schedule/addrow`: Add a new row to the timetable.
-- **DELETE** `/api/schedule/deleterow/:id`: Delete a row from the timetable.
+- **GET** `/api/timetable/fetch`: Fetch the user's current schedule.
+- **POST** `/api/timetable/save`: Save the Updated user's schedule.
 
 ## Screenshots
 
