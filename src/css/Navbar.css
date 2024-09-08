@@ -66,16 +66,19 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #343a40;
+    /* width: 250px; */
+    width: 45vw;
+    height: 100vh;
+    /* background-color: #343a40; */
+    background-color: rgba(20, 23, 25, 0.8);
     color: #ffffff;
     transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 1s ease-in-out;
     z-index: 1000;
 }
 
 .mobile-menu.open {
+    transition: transform 0.5s ease-in-out;
     transform: translateX(0);
 }
 
@@ -89,6 +92,7 @@
 
 .mobile-menu .nav-link {
     display: block;
+    align-items: center;
     padding: 1rem;
     color: #ffffff;
     text-decoration: none;
@@ -96,6 +100,7 @@
 
 .mobile-menu .nav-link:hover {
     background-color: #495057;
+    border-bottom: 2px solid white;
 }
 
 /* Profile Modal Styles */
