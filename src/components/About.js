@@ -10,7 +10,8 @@ const About = () => {
       <Container>
         <Row>
           <Col>
-            <h2><i className="fa-solid fa-info-circle mx-2" style={{ color: "black" }}></i>About</h2>
+            {/* <h2><i className="fa-solid fa-info-circle mx-2" style={{ color: "black" }}></i>About</h2> */}
+            <h2 style={{backgroundColor:'black' , borderRadius:'10px', padding:'5px' , color:'white'}}><i className="fa-solid fa-boxes px-1" style={{ marginRight: '5px', color: "#E0FFFF" }}></i><b>OrganizeNow</b></h2>
             <Tabs
               activeKey={activeTab}
               onSelect={(k) => setActiveTab(k)}

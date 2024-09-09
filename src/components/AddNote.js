@@ -21,7 +21,9 @@ const AddNote = (props) => {
     <div className='container p-3' style={{ backgroundColor: 'white', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border: '1px solid #ccc' }}>
       {/* <i className="fa-solid fa-book mx-1" style={{ color: "#1020ff" }} ></i> */}
       <h2><center><i className="fa-solid fa-clipboard-list mx-1" style={{ color: "#1020ff" }}></i> iNotebook</center></h2>
+      <hr/>
       <h5>Add Note </h5>
+      
       <form>
         <div className="form-group mb-2">
           <label htmlFor="title" className="form-label" >Title</label>
