@@ -13,27 +13,32 @@ const SignUp = (props) => {
 
   const handlSubmit = async (e) => {
     e.preventDefault();
-
-    // fetch("http:localhost:5000/api/auth/login")
-    const { name, email, password } = credentials;
-    const response = await fetch(`https://inotebook-backend-ixb2.onrender.com/api/auth/createuser`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, password }),
-    });
-    const json = await response.json()
-    console.log(json);
-    if (json.success) {
-      //Access
-      // localStorage.setItem('token', json.authtoken);
-      history("/login");
-      props.showAlert("Account Created Successfully. Now Login !!!","success")
+    // console.log(passwordVisible + " " + cpasswordVisible);
+    if (credentials.cpassword !== credentials.password) {
+      props.showAlert("Password and ConfirmPassword must be same !!!", "danger")
     } else {
-      // console.log(credentials);
-      // alert(json.error);
-      props.showAlert(json.error,"danger")
+
+      // fetch("http:localhost:5000/api/auth/login")
+      const { name, email, password } = credentials;
+      const response = await fetch(`https://inotebook-backend-ixb2.onrender.com/api/auth/createuser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+      const json = await response.json()
+      console.log(json);
+      if (json.success) {
+        //Access
+        // localStorage.setItem('token', json.authtoken);
+        history("/login");
+        props.showAlert("Account Created Successfully. Now Login !!!", "success")
+      } else {
+        // console.log(credentials);
+        // alert(json.error);
+        props.showAlert(json.error, "danger")
+      }
     }
   }
 
@@ -71,7 +76,7 @@ const SignUp = (props) => {
 
     <div className='container p-3' style={{ backgroundColor: 'white', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border: '1px solid #ccc' }}>
       <h3><center><i className="fa-solid fa-user-plus px-2"></i>Create an account to use OrganizeNow</center></h3>
-      <hr/>
+      <hr />
       <form onSubmit={handlSubmit}>
         <div className="form-group my-3">
           <label htmlFor="name" className="form-label">Name</label>

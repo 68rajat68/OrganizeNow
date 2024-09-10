@@ -14,10 +14,10 @@ const Footer = () => {
           </p>
           <p>
             Follow us on:
-            <a href="https://www.linkedin.com/in/rajatjangid15" className="footer-link" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/rajatjangid15" className="footer-link mx-1" target="_blank" rel="noopener noreferrer">
               <FaLinkedin /> LinkedIn
             </a>, 
-            <a href="https://github.com/68rajat68" className="footer-link" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/68rajat68" className="footer-link mx-1" target="_blank" rel="noopener noreferrer">
               <FaGithub /> GitHub
             </a>
           </p>

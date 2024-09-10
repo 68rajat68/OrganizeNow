@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
     background-color: #343a40;
     color: #fff;
     padding: 20px;
@@ -49,7 +49,7 @@
   }
   
   .footer-icon {
-    margin-right: 10px; /* Add space between icon and text */
+    margin-right: 10px; 
   }
   
   .footer-right p {
@@ -65,12 +65,10 @@
 
 
 
-/* Responsive styles for mobile devices */
 @media (max-width: 768px) {
     .footer-content {
       flex-direction: column;
-      /* align-items: center; */
-      /* text-align: center; */
+      
     }
   
     .footer-left,
@@ -83,4 +81,66 @@
     .footer-right p {
       margin: 5px 0;
     }
+}
+    
+
+
+*/
+
+
+
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allows the footer items to wrap on small screens */
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-left, .footer-right {
+  flex: 1;
+}
+
+.footer-left {
+  text-align: left;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+  /* margin-left: 8px; */
+}
+
+.footer-icon {
+  margin-right: 8px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* For mobile devices, stack the content vertically */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Stack footer items */
+    text-align: center;
+  }
+
+  .footer-left, .footer-right {
+    text-align: center;
+    margin-bottom: 20px; /* Add space between footer sections */
+  }
 }
