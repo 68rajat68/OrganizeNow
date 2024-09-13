@@ -2,6 +2,8 @@
 
 OrganizeNow is a comprehensive application designed to help you manage your tasks, notes, and schedules efficiently. The project combines two powerful tools: **iNotebook** for secure note-taking and **Schedulr** for effective time management. With OrganizeNow, users can seamlessly switch between managing their notes and organizing their daily schedules, all within a single application.
 
+The site is hosted on Vercel and can be accessed at [OrganizeNow](https://organizenow.vercel.app/).
+
 ## Table of Contents
 
 - [Features](#features)
