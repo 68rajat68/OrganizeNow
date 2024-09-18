@@ -229,9 +229,9 @@ function NavBar() {
                             {/* <div><i className="fa-solid fa-boxes px-1" style={{ marginRight: '5px', color: "#E0FFFF" }}></i>OrganizeNow</div> */}
                             <div><span className="close-btn" onClick={() => setMenuOpen(false)}>&times;</span></div>
                         </div>
-                        <NavLink className={`nav-link ${activeTab === '/' ? 'active_side' : ''}`} to="/" onClick={() => { setMenuOpen(false); }}><i className="fa-solid fa-clipboard-list mx-1" style={{ color: 'white' }}></i>iNotebook</NavLink>
-                        <NavLink className={`nav-link ${activeTab === '/Schedulr' ? 'active_side' : ''}`} to="/Schedulr" onClick={() => { setMenuOpen(false); setActiveTab('/Schedulr'); }}><i className="fa-solid fa-calendar-alt mx-1" style={{ color: "white" }}></i>Schedulr</NavLink>
-                        <NavLink className={`nav-link ${activeTab === '/about' ? 'active_side' : ''}`} to="/about" onClick={() => { setMenuOpen(false); setActiveTab('/about'); }}><i className="fa-solid fa-info-circle mx-1" style={{ color: "white" }}></i>About</NavLink>
+                        <NavLink className={`nav-link ${activeTab === '/' ? 'active_side' : ''}`} to="/" onClick={() => { setMenuOpen(false); }}><i className="fa-solid fa-clipboard-list mx-1" ></i>iNotebook</NavLink>
+                        <NavLink className={`nav-link ${activeTab === '/Schedulr' ? 'active_side' : ''}`} to="/Schedulr" onClick={() => { setMenuOpen(false); setActiveTab('/Schedulr'); }}><i className="fa-solid fa-calendar-alt mx-1" ></i>Schedulr</NavLink>
+                        <NavLink className={`nav-link ${activeTab === '/about' ? 'active_side' : ''}`} to="/about" onClick={() => { setMenuOpen(false); setActiveTab('/about'); }}><i className="fa-solid fa-info-circle mx-1"></i>About</NavLink>
                         {!localStorage.getItem('token') && (
                             <>
                                 <NavLink className="btn btn-primary mx-3 my-2" to="/login" onClick={() => setMenuOpen(false)}>Login</NavLink>

@@ -92,14 +92,18 @@
     color: #160000;
     cursor: pointer;
     padding: .2rem;
-    margin-left: 30vw;
+    /* float: right; */
+    margin-left: 34vw;
 }
 
 .active_side {
+    /* color: blue; */
     -webkit-text-fill-color: white;
+    /* color: white; */
     font-weight: 600;
     background-color: rgba(0, 0, 5, 0.5);
     border-bottom: 2px solid white;
+    
 }
 
 .mobile-menu .nav-link {
