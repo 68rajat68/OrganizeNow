@@ -47,14 +47,28 @@
     position: relative; /* Ensure the card is positioned relatively for the badge to be positioned absolutely */
   }
   
-  .badge {
+  .badge_01 {
     position: absolute;
-    left: -15px; /* Slightly inside from the end of the card */
-    transform: translate(50%, -50%); /* Center the badge vertically in the corner */
+    transform: translate(0, -50%); 
     z-index: 1; /* Ensure the badge is on top */
+    /* color: white; */
     background-color: rgba(41, 28, 3, 0.911);
   }
   
+
+  .badge_02 {
+    position: absolute;
+    margin-left: 180px;
+    transform: translate(0, -50%); 
+    z-index: 1; /* Ensure the badge is on top */
+    /* background-color: rgba(0, 0, 0, 0.911); */
+  }
+
+  .circle_back{
+    background-color: black;
+    padding: 7px;
+    border-radius: 100px;
+  }
 
 
 
