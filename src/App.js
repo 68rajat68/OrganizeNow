@@ -60,8 +60,9 @@ function App() {
         <Router>
           <div className='app-container'>
             <NavBar />
-            <Alert alert={alert} loading={loading} msg={'Waiting for backend to start...'}/>
+            
             <div className='content_main'>
+            <Alert alert={alert} loading={loading} msg={'Waiting for backend to start...'}/>
               <Routes>
                 <Route exact path="/" element={<Home showAlert={showAlert} />} />
                 <Route exact path="/Schedulr" element={<Schedulr showAlert={showAlert} />} />

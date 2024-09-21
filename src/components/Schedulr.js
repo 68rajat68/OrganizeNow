@@ -8,6 +8,15 @@ const Schedulr = (props) => {
   const [columnHeaders, setColumnHeaders] = useState(['Time Slot', 'Work to Do', ...Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'))]);
   let history = useNavigate();
 
+  const [showModal, setShowModal] = useState(false);
+
+
+  const handleRemoveClick = (id) => {
+    // setNoteIdToDelete(id);
+    setShowModal(true);
+};
+
+
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       history("/login");
@@ -23,7 +32,8 @@ const Schedulr = (props) => {
   const removeRow = () => {
     if (rows.length > 1) {
       setRows(rows.slice(0, -1));
-      props.showAlert("Row Removed Successfully","success")
+      props.showAlert("Row Removed Successfully","success");
+      setShowModal(false);
     }
   };
 
@@ -227,10 +237,44 @@ const Schedulr = (props) => {
             {isEditable ? 'Save' : 'Edit'}
           </button>
           <button onClick={addRow} className="add-row-btn">Add Row</button>
-          <button onClick={removeRow} className="remove-row-btn">Remove Row</button>
+          <button onClick={handleRemoveClick} className="remove-row-btn">Remove Row</button>
         </div>
         <button onClick={saveTimetable} className="save-data-btn">Save Data</button>
       </div>
+      {showModal && (
+                <div className="modal fade show d-block" tabIndex="-1" role="dialog" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Delete Note</h5>
+                                {/* <button type="button" className="close" onClick={() => setShowModal(false)} aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button> */}
+                                <button
+                                        type="button"
+                                        className="close"
+                                        onClick={() => setShowModal(false)}
+                                        aria-label="Close"
+                                        style={{
+                                            marginLeft: 'auto', // Ensures the button is floated to the right
+                                            fontSize: '1.5rem',
+                                        }}
+                                    >
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <div className="modal-body">
+                                Are you sure you want to delete this note?
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancel</button>
+                                
+                                <button type="button" className="btn btn-danger" onClick={removeRow}>Yes, Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
     </div>
 
   );
