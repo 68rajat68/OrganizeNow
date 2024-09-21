@@ -35,9 +35,9 @@
     margin: 0; /* Ensure no additional margin */
   }
   
-  .d-flex .d-flex {
-    /* No additional styling needed if this is just to align buttons */
-  }
+  /* .d-flex .d-flex {
+    No additional styling needed if this is just to align buttons
+  } */
   
   .card-body .card-text {
     margin-top: 10px; /* Adjust as needed */
@@ -49,11 +49,12 @@
   
   .badge_01 {
     position: absolute;
-    transform: translate(0, -50%); 
+    transform: translate(5px, -50%); 
     z-index: 1; /* Ensure the badge is on top */
-    /* color: white; */
-    background-color: rgba(41, 28, 3, 0.911);
-  }
+    color: black;
+    /* background-color: rgba(17, 0, 255, 0.911); */
+    background-color:  rgb(221, 221, 255);
+  } 
   
 
   .badge_02 {
