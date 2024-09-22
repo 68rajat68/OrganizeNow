@@ -3,7 +3,8 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { AiOutlineMenu } from 'react-icons/ai';
 import '../css/Navbar.css';
 
-function NavBar() {
+function NavBar(props) {
+    const { changeLayout, layout } = props;
     let history = useNavigate();
     const location = useLocation();
     const [showModal1, setShowModal1] = useState(false);
@@ -19,6 +20,7 @@ function NavBar() {
     const modalRef2 = useRef(null);
     const menuRef = useRef(null);
     const [menuOpen, setMenuOpen] = useState(false);
+    // const [isVerticalLayout, setIsVerticalLayout] = useState(true);
     //   const [activeTab, setActiveTab] = useState('/iNotebook');
     const [activeTab, setActiveTab] = useState(location.pathname);
 
@@ -207,7 +209,7 @@ function NavBar() {
                                     ref={iconRef2}
                                     className="icon-container"
                                     onClick={userProfileFun2}
-                                    
+
                                 >
                                     <i
                                         className={`fa-regular fa-circle-user mx-1 ${showModal2 ? 'icon-open' : 'icon-closed'}`}
@@ -259,11 +261,27 @@ function NavBar() {
                                 </form>
                                 :
                                 <>
+                                    {/* <button
+                                        onClick={changeLayout}
+                        
+                                        style={{ display: 'block', margin: '0 auto' }}>
+                                            <i className="fas fa-columns" style={{ marginRight: '8px' }}></i>
+                                    </button> */}
+
+                                    {activeTab=='/' && layout===1 ? (
+                                        <>
+                                            <span className='mx-3 p-1 px-3' style={{color : 'black', cursor:'pointer', background:'white', borderRadius:'10px'}} onClick={changeLayout} title="Switch to Horizontal Layouts"><i className="fas fa-columns fa-lg" style={{marginRight: '8px', color:'black'}} ></i>Layout</span>
+                                        </>
+                                    ) : ( activeTab=='/' && layout===0 ? (
+                                        <>
+                                            <span className='mx-3 p-1 px-3' style={{color : 'black', cursor:'pointer' , background:'white', borderRadius:'10px'}} onClick={changeLayout}  title="Switch to Vertical Layouts"><i className="fas fa-bars fa-lg " style={{ marginRight: '8px' , color:'black' }} ></i>Layout</span>
+                                        </> ) : (<></>)
+                                    )}
                                     <i
                                         ref={iconRef1}
                                         style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
                                         onClick={userProfileFun1}
-                                       
+                                         title="User Profile"
                                     >
                                         <i
                                             className={`fa-regular fa-circle-user mx-1 ${showModal1 ? 'icon-open' : 'icon-closed'}`}
@@ -271,7 +289,7 @@ function NavBar() {
                                         ></i>
                                         <i
                                             className={`fa ${showModal1 ? 'fa-chevron-up' : 'fa-chevron-down'} `}
-                                            style={{ fontSize: '12px', color: 'white', marginLeft: '3px' , marginRight: '10px'}}
+                                            style={{ fontSize: '12px', color: 'white', marginLeft: '3px', marginRight: '10px' }}
                                         ></i>
                                     </i>
                                 </>

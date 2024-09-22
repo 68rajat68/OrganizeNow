@@ -21,6 +21,12 @@ const Notes = (props) => {
   const ref = useRef(null)
   const refClose = useRef(null)
 
+  const [layout, setLayout] = useState('vertical');
+
+  const toggleLayout = () => {
+    setLayout((prevLayout) => (prevLayout === 'vertical' ? 'horizontal' : 'vertical'));
+  };
+
 
 
   const updateNote = (currentNote) => {
@@ -44,7 +50,7 @@ const Notes = (props) => {
 
   return (
     <>
-      <AddNote showAlert={props.showAlert} />
+
       <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal" >
         Launch demo modal
       </button>
@@ -78,7 +84,24 @@ const Notes = (props) => {
           </div>
         </div>
       </div>
-      <div className='container p-3 my-2' style={{backgroundColor:'white' , borderRadius:'10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border:'1px solid #ccc'}}>
+      <div className='container p-3' style={{backgroundColor:'white' , borderRadius:'10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border:'1px solid #ccc'}}>
+        <div className='row '>
+          <h3><center>Your Note</center></h3>
+          <hr/>
+          <div className="container mx-2 my-1" >{notes.length === 0 && 'No Notes To Display'}</div>
+          {
+            notes.map((note) => {
+              return <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} layoutNo={props.layoutNo} />;
+            })
+          }
+        </div>
+
+
+      {/* <button className="btn btn-primary my-2" onClick={toggleLayout}>
+        Toggle Layout
+      </button> */}
+
+      {/* <div className={`container p-3 my-2 layout-${layout}`} style={{ backgroundColor: 'white', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border: '1px solid #ccc' }}>
         <div className='row my-3'>
           <h3>Your Note</h3>
           <div className="container mx-2" >{notes.length === 0 && 'No Notes To Display'}</div>
@@ -87,8 +110,8 @@ const Notes = (props) => {
               return <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />;
             })
           }
-        </div>
-      </div>
+        </div>*/}
+      </div> 
     </>
   )
 }

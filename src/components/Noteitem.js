@@ -43,7 +43,7 @@ import '../css/normal.css';
 const Noteitem = (props) => {
     const context = useContext(noteContext);
     const { deleteNote } = context;
-    const { note, updateNote } = props;
+    const { note, updateNote , layoutNo} = props;
 
     // State to manage the visibility of the modal
     const [showModal, setShowModal] = useState(false);
@@ -63,7 +63,7 @@ const Noteitem = (props) => {
     };
 
     return (
-        <div className='col-md-3'>
+        <div className={`col-md-${layoutNo===1 ? '3' : '6'}`}>
             <div className="card my-3 position-relative">
                 <span className="badge badge_01 badge-dark">{note.tag}</span>
                 <span className="badge badge_02 badge-dark">
@@ -72,6 +72,7 @@ const Noteitem = (props) => {
                 </span>
                 <div className="card-body">
                     <h5 className="card-title">{note.title}</h5>
+                    <hr/>
                     <p className="card-text">{note.description}</p>
                 </div>
             </div>
@@ -88,12 +89,17 @@ const Noteitem = (props) => {
                                 </button> */}
                                 <button
                                         type="button"
-                                        className="close"
+                                        className="close py-1 px-1"
                                         onClick={() => setShowModal(false)}
                                         aria-label="Close"
                                         style={{
+                                            marginTop : '-15px',
                                             marginLeft: 'auto', // Ensures the button is floated to the right
-                                            fontSize: '1.5rem',
+                                            fontSize: '1.8rem',
+                                            background: 'black',
+                                            color : 'white',
+                                            height : ' 60px',
+                                            width : '30px'
                                         }}
                                     >
                                         <span aria-hidden="true">&times;</span>

@@ -25,6 +25,7 @@ function App() {
   const host = "https://inotebook-backend-ixb2.onrender.com"
   const [alert, setAlert] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isVerticalLayout, setIsVerticalLayout] = useState(false);
 
   const showAlert = (message, type) => {
     setAlert({
@@ -54,17 +55,21 @@ function App() {
   getNotes();
 },[]);
 
+  const changeLayout = () =>{
+    setIsVerticalLayout(!isVerticalLayout);
+  }
+
   return (
     <>
       <NoteState>
         <Router>
           <div className='app-container'>
-            <NavBar />
+            <NavBar changeLayout={changeLayout} layout={isVerticalLayout==true ? 1 : 0} />
             
             <div className='content_main'>
             <Alert alert={alert} loading={loading} msg={'Waiting for backend to start...'}/>
               <Routes>
-                <Route exact path="/" element={<Home showAlert={showAlert} />} />
+                <Route exact path="/" element={<Home showAlert={showAlert} layout={isVerticalLayout==true ? 1 : 0} />} />
                 <Route exact path="/Schedulr" element={<Schedulr showAlert={showAlert} />} />
                 <Route exact path="/about" element={<About />} />
                 <Route exact path="/login" element={<Login showAlert={showAlert} />} />
