@@ -88,9 +88,10 @@ export default function Alert(probs) {
                             transition: 'transform 0.6s ease, opacity 0.6s ease', // Smooth transition
                             transform: visible ? 'translateX(0)' : 'translateX(100%)', // Slide in/out from right
                             opacity: visible ? 1 : 0, // Fade in/out effect
-                            backgroundColor: probs.alert.type === 'error' ? 'red' : 'blue', // Customize based on alert type
+                            backgroundColor: probs.alert.type === 'danger' ? 'red' : 'blue', // Customize based on alert type
                             color: 'white',
                             borderRadius: '10px',
+                            // border : '1px solid black' ,
                             boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
                         }}
                         className={`alert alert-${probs.alert.type} alert-dismissible fade show`}

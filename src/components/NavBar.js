@@ -268,11 +268,11 @@ function NavBar(props) {
                                             <i className="fas fa-columns" style={{ marginRight: '8px' }}></i>
                                     </button> */}
 
-                                    {activeTab=='/' && layout===1 ? (
+                                    {activeTab==='/' && layout===1 ? (
                                         <>
                                             <span className='mx-3 p-1 px-3' style={{color : 'black', cursor:'pointer', background:'white', borderRadius:'10px'}} onClick={changeLayout} title="Switch to Horizontal Layouts"><i className="fas fa-columns fa-lg" style={{marginRight: '8px', color:'black'}} ></i>Layout</span>
                                         </>
-                                    ) : ( activeTab=='/' && layout===0 ? (
+                                    ) : ( activeTab==='/' && layout===0 ? (
                                         <>
                                             <span className='mx-3 p-1 px-3' style={{color : 'black', cursor:'pointer' , background:'white', borderRadius:'10px'}} onClick={changeLayout}  title="Switch to Vertical Layouts"><i className="fas fa-bars fa-lg " style={{ marginRight: '8px' , color:'black' }} ></i>Layout</span>
                                         </> ) : (<></>)
