@@ -246,30 +246,39 @@ const Schedulr = (props) => {
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Delete Note</h5>
+                                <h5 className="modal-title">Remove Row</h5>
                                 {/* <button type="button" className="close" onClick={() => setShowModal(false)} aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button> */}
                                 <button
                                         type="button"
-                                        className="close"
+                                        className="close py-1 px-1"
                                         onClick={() => setShowModal(false)}
                                         aria-label="Close"
+                                        // style={{
+                                        //     marginLeft: 'auto', // Ensures the button is floated to the right
+                                        //     fontSize: '1.5rem',
+                                        // }}
                                         style={{
-                                            marginLeft: 'auto', // Ensures the button is floated to the right
-                                            fontSize: '1.5rem',
-                                        }}
+                                          marginTop : '-15px',
+                                          marginLeft: 'auto', // Ensures the button is floated to the right
+                                          fontSize: '1.8rem',
+                                          background: 'black',
+                                          color : 'white',
+                                          height : ' 60px',
+                                          width : '30px'
+                                      }}
                                     >
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                             </div>
                             <div className="modal-body">
-                                Are you sure you want to delete this note?
+                                Are you sure you want to remove the last added row?
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancel</button>
                                 
-                                <button type="button" className="btn btn-danger" onClick={removeRow}>Yes, Delete</button>
+                                <button type="button" className="btn btn-danger" onClick={removeRow}>Yes, Remove</button>
                             </div>
                         </div>
                     </div>
