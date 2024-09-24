@@ -63,7 +63,7 @@ const Noteitem = (props) => {
     };
 
     return (
-        <div className={`col-md-${gridNo===1 ? '12' : gridNo===2 ? '6': gridNo===3 ? '4' : gridNo===4 ? '3' : gridNo===5 ? '2' : '4'}`}>
+        <div className={`col-md-${gridNo===1 ? '12' : gridNo===2 ? '6': gridNo===3 ? '4' : gridNo===4 ? '3' : gridNo===6 ? '2' : '4'}`}>
             <div className="card my-3 position-relative">
                 <span className="badge badge_01 badge-dark">{note.tag}</span>
                 <span className="badge badge_02 badge-dark">

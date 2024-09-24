@@ -14,7 +14,6 @@ const Notes = (props) => {
   const ref = useRef(null)
   const refClose = useRef(null)
 
-  const [layout, setLayout] = useState('vertical');
   const [selectedNumber, setSelectedNumber] = useState(layoutNo || 1);
 
   
@@ -25,25 +24,30 @@ const Notes = (props) => {
     } else {
       history("/login");
     }
+    // eslint-disable-next-line
   }, [])
 
   
 
   const handleSelect = (e) => {
-    setSelectedNumber(e.target.value);
-    console.log(selectedNumber);
+    setSelectedNumber(parseInt(e.target.value));
   };
+
+
+  // const handleSelect = (e) => {
+  //   const value = parseInt(e.target.value);
+  //   setSelectedNumber(value);  // Update selected number
+  //   setGridNo(value);          // Update gridNo based on selection
+  // };
 
 
   useEffect(() => {
-    setGridNo(selectedNumber);
-    console.log(" grid" + gridNo);
-  }, [selectedNumber]);
+    setSelectedNumber(gridNo);
+  }, [gridNo]);
 
-  const toggleLayout = () => {
-    setLayout((prevLayout) => (prevLayout === 'vertical' ? 'horizontal' : 'vertical'));
-  };
-
+  useEffect(() => {
+    setGridNo(selectedNumber);  // Update the prop value
+  }, [selectedNumber, setGridNo]);
 
 
   const updateNote = (currentNote) => {
@@ -116,7 +120,7 @@ const Notes = (props) => {
                 <option value={2}>2</option>
                 <option value={3}>3</option>
                 <option value={4}>4</option>
-                <option value={5}>5</option>
+                <option value={6}>6</option>
               </select>
             </div>
           </div>
@@ -124,26 +128,10 @@ const Notes = (props) => {
           <div className="container mx-2 my-1" >{notes.length === 0 && 'No Notes To Display'}</div>
           {
             notes.map((note) => {
-              return <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} gridNo={selectedNumber}/>;
+              return <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} gridNo={gridNo}/>;
             })
           }
         </div>
-
-
-        {/* <button className="btn btn-primary my-2" onClick={toggleLayout}>
-        Toggle Layout
-      </button> */}
-
-        {/* <div className={`container p-3 my-2 layout-${layout}`} style={{ backgroundColor: 'white', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border: '1px solid #ccc' }}>
-        <div className='row my-3'>
-          <h3>Your Note</h3>
-          <div className="container mx-2" >{notes.length === 0 && 'No Notes To Display'}</div>
-          {
-            notes.map((note) => {
-              return <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />;
-            })
-          }
-        </div>*/}
       </div>
     </>
   )

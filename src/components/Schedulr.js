@@ -21,6 +21,7 @@ const Schedulr = (props) => {
     if (!localStorage.getItem('token')) {
       history("/login");
     }
+    // eslint-disable-next-line
   }, []);
 
   const addRow = () => {

@@ -43,6 +43,10 @@
     margin-top: 10px; /* Adjust as needed */
   }
 
+  .card-body .card-title {
+    text-align: left;
+  }
+
   .card {
     position: relative; /* Ensure the card is positioned relatively for the badge to be positioned absolutely */
   }
@@ -101,33 +105,8 @@
 
 
 
+/* Loading Spinner */
 
-
-
-/* Loding-SPinner */
-
-/* .loading-spinner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.spinner-icon {
-  width: 30px;
-  height: 30px;
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #3824eb; 
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-} */
 
 .loading-spinner {
   display: flex;
@@ -184,7 +163,12 @@
 
 /* Notes CSS  */
 
-/* For heading and button css and all other  */
+/* Media query to hide the dropdown on screens smaller than 991px */
+@media (max-width: 991px) {
+  .dropdown-select-container {
+    display: none !important; /* Force hiding the dropdown on smaller screens */
+  }
+}
 
 /* Container for the entire component */
 .dropdown-container {
@@ -216,7 +200,7 @@
 
 /* Styling for the dropdown select */
 .dropdown-select {
-  padding:2px 5px;
+  padding: 2px 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
