@@ -14,7 +14,7 @@ import NoteState from './context/notes/noteState';
 import Alert from './components/Alert';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import { useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Schedulr from './components/Schedulr';
 import Footer from './components/Footer';
 
@@ -26,6 +26,15 @@ function App() {
   const [alert, setAlert] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isVerticalLayout, setIsVerticalLayout] = useState(true);
+  const [gridNo,setGridNo] = useState(4);
+
+  useEffect(() => {
+    if (isVerticalLayout) {
+      setGridNo(4);
+    } else {
+      setGridNo(2);
+    }
+  }, [isVerticalLayout]);
 
   const showAlert = (message, type) => {
     setAlert({
@@ -37,25 +46,25 @@ function App() {
     }, 2000);
   }
   useEffect(() => {
-  const getNotes = async () => {
-    setLoading(true);
+    const getNotes = async () => {
+      setLoading(true);
 
-    try {
-      const response = await fetch(`${host}/`, {
-        method: "GET"
-      });
-      const json = await response;
-      console.log(json);
-    } catch (error) {
-      console.error("Error fetching notes:", error);
-    } finally {
-      setLoading(false);
+      try {
+        const response = await fetch(`${host}/`, {
+          method: "GET"
+        });
+        const json = await response;
+        console.log(json);
+      } catch (error) {
+        console.error("Error fetching notes:", error);
+      } finally {
+        setLoading(false);
+      }
     }
-  }
-  getNotes();
-},[]);
+    getNotes();
+  }, []);
 
-  const changeLayout = () =>{
+  const changeLayout = () => {
     setIsVerticalLayout(!isVerticalLayout);
   }
 
@@ -64,12 +73,12 @@ function App() {
       <NoteState>
         <Router>
           <div className='app-container'>
-            <NavBar changeLayout={changeLayout} layout={isVerticalLayout===true ? 1 : 0} />
-            
+            <NavBar changeLayout={changeLayout} layout={isVerticalLayout === true ? 1 : 0} />
+
             <div className='content_main'>
-            <Alert alert={alert} loading={loading} msg={'Waiting for backend to start...'}/>
+              <Alert alert={alert} loading={loading} msg={'Waiting for backend to start...'} />
               <Routes>
-                <Route exact path="/" element={<Home showAlert={showAlert} layout={isVerticalLayout===true ? 1 : 0} />} />
+                <Route exact path="/" element={<Home showAlert={showAlert} layout={isVerticalLayout === true ? 4 : 2} gridNo={gridNo} setGridNo={setGridNo}/>} />
                 <Route exact path="/Schedulr" element={<Schedulr showAlert={showAlert} />} />
                 <Route exact path="/about" element={<About />} />
                 <Route exact path="/login" element={<Login showAlert={showAlert} />} />

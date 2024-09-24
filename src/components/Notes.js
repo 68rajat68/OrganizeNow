@@ -1,13 +1,23 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from "../context/notes/noteContext"
 import NoteItem from './Noteitem'
-import AddNote from './AddNote';
 import { useNavigate } from 'react-router-dom';
+import '../css/normal.css';
 
 const Notes = (props) => {
+  const { layoutNo , gridNo , setGridNo} = props;
   let history = useNavigate();
   const context = useContext(noteContext);
   const { notes, getNotes, editNote } = context;
+
+  const [note, setNote] = useState({ id: "66ab2c68abc8ad217009a11f", etitle: "", edescription: "", etag: "deafult" })
+  const ref = useRef(null)
+  const refClose = useRef(null)
+
+  const [layout, setLayout] = useState('vertical');
+  const [selectedNumber, setSelectedNumber] = useState(layoutNo || 1);
+
+  
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -17,11 +27,18 @@ const Notes = (props) => {
     }
   }, [])
 
-  const [note, setNote] = useState({ id: "66ab2c68abc8ad217009a11f", etitle: "", edescription: "", etag: "deafult" })
-  const ref = useRef(null)
-  const refClose = useRef(null)
+  
 
-  const [layout, setLayout] = useState('vertical');
+  const handleSelect = (e) => {
+    setSelectedNumber(e.target.value);
+    console.log(selectedNumber);
+  };
+
+
+  useEffect(() => {
+    setGridNo(selectedNumber);
+    console.log(" grid" + gridNo);
+  }, [selectedNumber]);
 
   const toggleLayout = () => {
     setLayout((prevLayout) => (prevLayout === 'vertical' ? 'horizontal' : 'vertical'));
@@ -84,24 +101,40 @@ const Notes = (props) => {
           </div>
         </div>
       </div>
-      <div className='container p-3' style={{backgroundColor:'white' , borderRadius:'10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border:'1px solid #ccc'}}>
+      <div className='container p-3' style={{ backgroundColor: 'white', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border: '1px solid #ccc' }}>
         <div className='row '>
-          <h3><center>Your Note</center></h3>
-          <hr/>
+          <div className='dropdown-container'>
+            <h3 className='dropdown-heading'>Your Note</h3>
+            {/* Dropdown Button on the Right */}
+            <div className="dropdown-select-container">
+              <select
+                className="dropdown-select"
+                value={selectedNumber}
+                onChange={handleSelect}
+              >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+              </select>
+            </div>
+          </div>
+          <hr />
           <div className="container mx-2 my-1" >{notes.length === 0 && 'No Notes To Display'}</div>
           {
             notes.map((note) => {
-              return <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} layoutNo={props.layoutNo} />;
+              return <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} gridNo={selectedNumber}/>;
             })
           }
         </div>
 
 
-      {/* <button className="btn btn-primary my-2" onClick={toggleLayout}>
+        {/* <button className="btn btn-primary my-2" onClick={toggleLayout}>
         Toggle Layout
       </button> */}
 
-      {/* <div className={`container p-3 my-2 layout-${layout}`} style={{ backgroundColor: 'white', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border: '1px solid #ccc' }}>
+        {/* <div className={`container p-3 my-2 layout-${layout}`} style={{ backgroundColor: 'white', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', border: '1px solid #ccc' }}>
         <div className='row my-3'>
           <h3>Your Note</h3>
           <div className="container mx-2" >{notes.length === 0 && 'No Notes To Display'}</div>
@@ -111,7 +144,7 @@ const Notes = (props) => {
             })
           }
         </div>*/}
-      </div> 
+      </div>
     </>
   )
 }
