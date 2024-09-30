@@ -14,7 +14,7 @@ const Notes = (props) => {
   const ref = useRef(null)
   const refClose = useRef(null)
 
-  const [selectedNumber, setSelectedNumber] = useState(layoutNo || 1);
+  const [selectedNumber, setSelectedNumber] = useState(layoutNo===1?4:2);
 
   
 
@@ -42,8 +42,8 @@ const Notes = (props) => {
 
 
   useEffect(() => {
-    setSelectedNumber(gridNo);
-  }, [gridNo]);
+    setSelectedNumber(layoutNo===1 ? 4 : 2);
+  }, [layoutNo]);
 
   useEffect(() => {
     setGridNo(selectedNumber);  // Update the prop value

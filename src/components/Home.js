@@ -16,18 +16,32 @@
 
 
 
-import React from 'react';
+import React,{useEffect} from 'react';
 import Notes from './Notes';
 import AddNote from './AddNote';
 
 const Home = (props) => {
   const { showAlert , layout , gridNo , setGridNo } = props;
 
+  // onloadstart
+
+  useEffect(() => {
+    if (layout === 1) {
+      // if(gridNo === null)
+        setGridNo(4);
+    } else {
+      // if(gridNo === null)
+        setGridNo(2);
+    }
+    // console.log("gridNo");
+  }, [layout]);
+
+
   return (
     <div>
       <div style={{
         display: 'flex',
-        flexDirection: layout===4 ? 'column' : 'row',
+        flexDirection: layout===1 ? 'column' : 'row',
         gap: '20px' // Adds some space between AddNote and Notes when in horizontal layout
       }}>
         <div style={{margin:layout===0 ? 'auto':'0px' , flex: layout===1 ? 'none' : 1 }}> {/* Adjust width in horizontal */}

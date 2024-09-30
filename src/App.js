@@ -26,15 +26,11 @@ function App() {
   const [alert, setAlert] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isVerticalLayout, setIsVerticalLayout] = useState(true);
-  const [gridNo,setGridNo] = useState(4);
+  const [gridNo,setGridNo] = useState(0);
 
-  useEffect(() => {
-    if (isVerticalLayout) {
-      setGridNo(4);
-    } else {
-      setGridNo(2);
-    }
-  }, [isVerticalLayout]);
+  // useEffect(() => {
+  //   console.log(gridNo + " ");
+  // }, [gridNo]);
 
   const showAlert = (message, type) => {
     setAlert({
@@ -78,7 +74,7 @@ function App() {
             <div className='content_main'>
               <Alert alert={alert} loading={loading} msg={'Waiting for backend to start...'} />
               <Routes>
-                <Route exact path="/" element={<Home showAlert={showAlert} layout={isVerticalLayout === true ? 4 : 2} gridNo={gridNo} setGridNo={setGridNo}/>} />
+                <Route exact path="/" element={<Home showAlert={showAlert} layout={isVerticalLayout === true ? 1 : 0} gridNo={gridNo} setGridNo={setGridNo}/>} />
                 <Route exact path="/Schedulr" element={<Schedulr showAlert={showAlert} />} />
                 <Route exact path="/about" element={<About />} />
                 <Route exact path="/login" element={<Login showAlert={showAlert} />} />
